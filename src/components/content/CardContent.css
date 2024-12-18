@@ -1,0 +1,21 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 85%;
+}
+.imageCape{
+    position: relative;
+    height: 250px;
+    border-bottom: 1px solid lightgray;
+}
+
+#cape{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text{ 
+    padding: 10px;
+}
