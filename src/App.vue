@@ -1,7 +1,5 @@
 <template>
-  <CardHeader 
-    :isLogged="true"
-  />
+  
   <div class="container">
     <CardSidebar />
     <CardContent />
@@ -10,13 +8,11 @@
 
 <script>
 import CardContent from './components/content/CardContent.vue';
-import CardHeader from './components/header/CardHeader.vue';
 import CardSidebar from './components/sidebar/CardSidebar.vue';
 
 export default {
   name: 'App',
   components: {
-    CardHeader,
     CardSidebar,
     CardContent
   }
@@ -32,5 +28,6 @@ export default {
 .container{
   display: flex;
   width: 100%;
+  height: 100vh;
 }
 </style>

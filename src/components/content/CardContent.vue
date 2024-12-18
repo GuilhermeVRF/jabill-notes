@@ -1,23 +1,26 @@
 <template>
     <div class="content">
+        <CardLoggedHeader />
         <div class="imageCape">
             <CardImagesList />
             <img src="../../assets/yellow.png" id="cape">
         </div>
-        <div class="text">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure blanditiis quo rerum soluta sequi tenetur accusamus quod ullam porro ipsum! Veniam atque sunt cumque sed tempore, eligendi nihil voluptate illo?</p>
-        </div>
+        <CardQuill />
     </div>
 </template>
 
 <script>
+import CardLoggedHeader from '../loggedHeader/CardLoggedHeader.vue';
 import CardImagesList from '../imagesList/CardImagesList.vue';
+import CardQuill from '../text/CardQuill.vue';
 import './CardContent.css';
 
 export default {
   name: "CardContent",
   components: {
-    CardImagesList
+    CardImagesList,
+    CardQuill,
+    CardLoggedHeader
   },
 }
 </script>

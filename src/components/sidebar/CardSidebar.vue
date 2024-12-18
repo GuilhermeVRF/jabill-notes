@@ -1,17 +1,14 @@
 <template>
     <div class="sidebar">
         <CardLogo />
-        <CardUserProfile />
     </div>
 </template>
 
 <script>
-import CardUserProfile from '../userProfile/CardUserProfile.vue';
 import CardLogo from '../logo/CardLogo.vue';
 export default{
     name: "CardSidebar",
     components: {
-        CardUserProfile,
         CardLogo
     },
 }
