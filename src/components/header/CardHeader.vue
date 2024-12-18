@@ -49,28 +49,7 @@ header{
     color: white
 }
 
-.perfil{
-    margin-left: 30px;
-}
 
-.userProfile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.userProfile img{
-    border-radius: 50%;
-    width: 60px;
-    
-}
-
-.userProfile img:hover{
-    cursor: pointer;
-    box-shadow: 0 0 15px black;
-    transition: 0.1s;
-}
 
 @media screen and (max-width: 900px) {
     .logo{

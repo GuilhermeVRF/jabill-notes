@@ -1,0 +1,8 @@
+.logo{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 10vh;
+    color: black;
+    border-bottom: solid 1px black;
+}

@@ -1,30 +1,27 @@
 <template>
-    <div class="sidebar"></div>
+    <div class="sidebar">
+        <CardLogo />
+        <CardUserProfile />
+    </div>
 </template>
 
 <script>
+import CardUserProfile from '../userProfile/CardUserProfile.vue';
+import CardLogo from '../logo/CardLogo.vue';
 export default{
-    name: "CardSidebar"
+    name: "CardSidebar",
+    components: {
+        CardUserProfile,
+        CardLogo
+    },
 }
 </script>
 
 <style>
     .sidebar{
         height: 100vh;
-        background-color: black;
-        width: 15%;
-    }
-
-    @media screen and (max-width: 900px) {
-        .sidebar{
-            width: 35%;
-        }
-    }
-
-
-    @media screen and (max-width: 400px) {
-        .sidebar{
-            width: 50%;
-        }
+        background-color: lightgray;
+        width: 300px;
+        border-right: solid 1px rgba(0, 0, 0, 0.5);
     }
 </style>

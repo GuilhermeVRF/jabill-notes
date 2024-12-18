@@ -1,0 +1,16 @@
+.userProfile{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.userProfile img{
+    width: 35px; 
+}
+
+.userProfile img:hover{
+    cursor: pointer;
+}
