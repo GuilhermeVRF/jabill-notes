@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import "./ViewLogin.css";
 import CardHeader from '@/components/header/CardHeader.vue';
 import CardForm from "@/components/form/CardForm.vue";
 

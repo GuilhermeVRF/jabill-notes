@@ -1,6 +1,6 @@
 <template>
     <div class="form-container">
-        <img :src="imgSrc" alt="login" class="login-image">
+        <img :src="imgSrc" alt="login" class="form-image">
         <div  class="form-content">
             <h1 class="login-title">{{ title }}</h1>
             <form class="form" method="post">

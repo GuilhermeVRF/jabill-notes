@@ -16,8 +16,5 @@ export default{
 </script>
 
 <style>
-.header{
-    position: fixed;
-    width: 100vw;
-}
+
 </style>
