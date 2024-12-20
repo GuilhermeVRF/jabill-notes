@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="logged-header">
         <CardUserProfile />
     </header>
 </template>
