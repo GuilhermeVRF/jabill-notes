@@ -62,7 +62,15 @@ export default{
 
     @media screen and (max-width: 800px){
         .sidebar{
-            width: 150px;
+            width: 100px;
+        }
+
+        .sidebar .logo{
+            justify-content: center;
+        }
+
+        .sidebar h2{
+            display: none;
         }
 
         .collapsed{
