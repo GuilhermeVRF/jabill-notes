@@ -1,8 +1,7 @@
 export async function fetchUser(){
-    const response = await fetch('https://randomuser.me/api/');
+    const response = await fetch(`http://localhost:5000/user/${localStorage.getItem("user_id")}`);
     
-    const data = await response.json();
-    const username = data.results[0].name.first;
-    const photo = data.results[0].picture.large;
-    return {username : username, photo : photo};
+    const responseBody = await response.json();
+
+    return {username : responseBody.data.name, photo : ""};
 }

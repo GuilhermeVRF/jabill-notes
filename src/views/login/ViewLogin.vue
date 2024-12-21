@@ -1,15 +1,18 @@
 <template>
     <CardHeader />
+    <p class="error-message" v-if="$route.query.error">{{ $route.query.error }}</p>
     <CardForm
         :fields="loginFields"
         :imgSrc="require('@/assets/login.png')"
         title="Login"
         linkTo="/register"
         linkMessage="Não está cadastrado? Registre-se aqui"
+        @submit-form="login"
     />
 </template>
 
 <script>
+import { login } from './ViewLogin';
 import CardHeader from '@/components/header/CardHeader.vue';
 import CardForm from "@/components/form/CardForm.vue";
 
@@ -40,6 +43,11 @@ export default {
                 },
             ],
         };
+    },
+    methods :{
+        login(form){
+            login(form, this.$router)
+        }
     }
 }
 </script>
