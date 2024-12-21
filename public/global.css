@@ -8,21 +8,28 @@
 }
 
 .btn-success{
-    border: solid 1px green;
-    background-color: green;
+    border: solid 1px #218838;
+    background-color: #218838;
 }
 
 .btn-danger{
-    border: solid 1px red;
-    background-color: red;
+    border: solid 1px #dc3545;
+    background-color: #dc3545;
 }
 
 .btn-success:hover{
     background-color: white;
-    color: green;
+    color: #218838;
 }
 
 .btn-danger:hover{
     background-color: white;
-    color: red;
+    color: #dc3545;
+}
+
+.error-message{
+    background-color: #dc3545;
+    color: white;
+    text-align: center;
+    width: 100%;
 }
