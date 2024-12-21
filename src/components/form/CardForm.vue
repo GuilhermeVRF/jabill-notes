@@ -3,10 +3,11 @@
         <img :src="imgSrc" alt="login" class="form-image">
         <div  class="form-content">
             <h1 class="login-title">{{ title }}</h1>
-            <form class="form" method="post">
+            <form class="form" method="post" @submit.prevent="submitForm">
                 <div v-for="(field, index) in fields" :key=index class="form-group">
                     <label :for="field.id">{{ field.label }}</label>
-                    <input 
+                    <input
+                        v-model="formData[field.id]" 
                         :type="field.type" 
                         :id="field.id" 
                         :name="field.name" 
@@ -28,6 +29,8 @@
 
 <script>
 import "./CardForm.css";
+import { reactive } from "vue";
+
 export default {
     name: 'CardForm',
     props: {
@@ -54,6 +57,21 @@ export default {
         linkMessage: {
             type: String,
             required: true,
+        }
+    },
+    data (){
+        return {
+            formData: reactive({})
+        }
+    },
+    created (){
+        this.fields.forEach(element => {
+            this.formData[element.id] = ''   
+        });
+    },
+    methods: {
+        submitForm() {
+            this.$emit('submit-form', {formData : this.formData })
         }
     }
 }

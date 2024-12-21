@@ -6,10 +6,12 @@
         title="Registrar"
         linkTo="/login"
         linkMessage="Já está cadastrado? Faça login aqui"
+        @submit-form="registerUser"
     />
 </template>
 
 <script>
+import { registerUser } from "./ViewRegister.js";
 import CardHeader from '@/components/header/CardHeader.vue';
 import CardForm from '@/components/form/CardForm.vue';
 
@@ -28,7 +30,7 @@ export default{
                     id: "name",
                     name: "name",
                     placeholder: "Nome",
-                    required: true,
+                    required: false,
                 },
                 {
                     label: "Email",
@@ -36,7 +38,7 @@ export default{
                     id: "email",
                     name: "email",
                     placeholder: "Email",
-                    required: true,
+                    required: false,
                 },
                 {
                     label: "Senha",
@@ -44,15 +46,15 @@ export default{
                     id: "password",
                     name: "password",
                     placeholder: "Senha",
-                    required: true,
+                    required: false,
                 },
                 {
                     label: "Repita a Senha",
                     type: "password",
-                    id: "repeat-password",
-                    name: "repeat-password",
+                    id: "repeat_password",
+                    name: "repeat_password",
                     placeholder: "Repita a senha",
-                    required: true,
+                    required: false,
                 },
                 {
                     label: "Imagem de perfil",
@@ -60,10 +62,15 @@ export default{
                     id: "perfilImage",
                     name: "perfilImage",
                     placeholder: "Repita a senha",
-                    required: true,
+                    required: false,
                 }
             ],
         };
+    },
+    methods: {
+        registerUser(form){
+            registerUser(form, this.$router)
+        }
     }
 }
 </script>
