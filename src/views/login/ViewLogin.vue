@@ -1,6 +1,5 @@
 <template>
     <CardHeader />
-    <p class="error-message" v-if="$route.query.error">{{ $route.query.error }}</p>
     <CardForm
         :fields="loginFields"
         :imgSrc="require('@/assets/login.png')"

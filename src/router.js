@@ -33,7 +33,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if(to.meta.requiresAuth && !isAuthenticated()){
-        next({name : 'login', query: { error: "Usuário não está logado!"}});
+        window.showPopup('error', 'Usuário não está logado!');   
+        next({name : 'login'});
     }else{
         next();
     }
