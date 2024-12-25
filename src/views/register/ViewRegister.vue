@@ -59,8 +59,8 @@ export default{
                 {
                     label: "Imagem de perfil",
                     type: "file",
-                    id: "perfilImage",
-                    name: "perfilImage",
+                    id: "profile_image",
+                    name: "profile_image",
                     placeholder: "Repita a senha",
                     required: false,
                 }

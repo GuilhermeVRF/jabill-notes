@@ -9,7 +9,7 @@ export async function login(form, router){
 
         const responseBody = await response.json();
         if(responseBody.status === "success"){
-            localStorage.setItem("user_id", responseBody.data.id)
+            localStorage.setItem("user_token", responseBody.data.user_token)
 
             window.showPopup(responseBody.status, responseBody.message);
             setTimeout(() => {}, 3000);

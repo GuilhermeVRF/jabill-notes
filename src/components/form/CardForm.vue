@@ -7,6 +7,7 @@
                 <div v-for="(field, index) in fields" :key=index class="form-group">
                     <label :for="field.id">{{ field.label }}</label>
                     <input
+                        v-if="field.type != 'file'"
                         v-model="formData[field.id]" 
                         :type="field.type" 
                         :id="field.id" 
@@ -14,6 +15,16 @@
                         :placeholder="field.placeholder" 
                         :required="field.required"
                         class="form-control"
+                    >
+                    <input
+                        v-else
+                        type="file"
+                        :id="field.id"
+                        :name="field.name"
+                        :placeholder="field.placeholder"
+                        :required="field.required"
+                        class="form-control"
+                        @change="handleFileEvent(field.id, $event)"
                     >
                 </div>
 
@@ -70,6 +81,10 @@ export default {
         });
     },
     methods: {
+        handleFileEvent(fieldId, event){
+            const file = event.target.files[0];
+            this.formData[fieldId] = file;
+        },
         submitForm() {
             this.$emit('submit-form', {formData : this.formData })
         }

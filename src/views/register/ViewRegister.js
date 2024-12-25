@@ -1,16 +1,22 @@
 export async function registerUser(form, router){
     const data = form.formData;
-    console.log(data)
-    data.profile_image = 'imagem';
+    const formData = new FormData()
+    
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("repeat_password", data.repeat_password);
+    formData.append("profile_image", data.profile_image);
+   
     try{
         const response = await fetch("http://localhost:5000/user", {
             method : "POST",
-            body : JSON.stringify(data)
+            body : formData
         });
         
         const responseBody = await response.json();
         if(responseBody.status === "success"){
-            localStorage.setItem("user_id", responseBody.data.id);
+            localStorage.setItem("user_token", responseBody.data.user_token);
 
             window.showPopup(responseBody.status, responseBody.message);
             setTimeout(() => {}, 3000);

@@ -12,7 +12,7 @@
 
 <script>
 import "./CardUserProfile.css";
-import { fetchUser } from "./CardUserProfile.js";
+import { fetchUser , fetchUserProfile} from "./CardUserProfile.js";
 import CardLoading from "../loading/CardLoading.vue";
 
 export default {
@@ -29,10 +29,11 @@ export default {
     },
     async mounted() {
         try {
-            const user = await fetchUser();
-            if (user.username) this.username = user.username;
+            const username = await fetchUser(this.$router);
+            const profileImage = await fetchUserProfile();
+            if (username) this.username = username;
 
-            if (user.photo) this.perfilImage = user.photo;
+            if (profileImage) this.perfilImage = profileImage;
         } catch (error) {
             console.error("Erro ao carregar dados:", error);
         } finally {

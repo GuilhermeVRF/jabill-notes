@@ -1,7 +1,26 @@
-export async function fetchUser(){
-    const response = await fetch(`http://localhost:5000/user/${localStorage.getItem("user_id")}`);
-    
-    const responseBody = await response.json();
+export async function fetchUser(router){
+    try{
+        const response = await fetch(`http://localhost:5000/user/${localStorage.getItem("user_token")}`);
+        const responseBody = await response.json();
 
-    return {username : responseBody.data.name, photo : ""};
+        if (response.status === 401) {
+            window.showPopup(responseBody.status, responseBody.message);
+            router.push("/login")
+        }
+
+        return responseBody.data.name;
+    }catch(exception){
+        return null;
+    }
+}
+
+export async function fetchUserProfile(){
+    try{
+        const response = await fetch(`http://localhost:5000/user/profile/${localStorage.getItem("user_token")}`);
+        const responseBody = await response.json();
+
+        return responseBody.data.profile;
+    }catch(exception){
+        return null;
+    }
 }

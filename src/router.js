@@ -4,7 +4,7 @@ import ViewContent from '@/views/editor/ViewEditor.vue';
 import ViewRegister from './views/register/ViewRegister.vue';
 
 function isAuthenticated() {
-    return localStorage.getItem('user_id') !== null;
+    return localStorage.getItem('user_token') !== null;
 }
 
 const routes = [
