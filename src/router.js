@@ -14,7 +14,7 @@ const routes = [
         component: ViewLogin
     },
     {
-        path: '/content',
+        path: '/content/:slug',
         name: 'content',
         component: ViewContent,
         meta: { requiresAuth: true }

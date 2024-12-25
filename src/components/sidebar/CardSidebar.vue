@@ -4,11 +4,13 @@
         <div class="toggleSidebar">
             <button @click="toggleSidebar" class="toggleSidebar-btn">{{ isCollapsed ? '>>>' : '<<<' }}</button> 
         </div> 
+        <CardPagesList />
     </div>
 </template>
 
 <script>
 import CardLogo from '../logo/CardLogo.vue';
+import CardPagesList from '@/pagesList/CardPagesList.vue';
 export default{
     name: "CardSidebar",
     data (){
@@ -22,7 +24,8 @@ export default{
         }
     },
     components: {
-        CardLogo
+        CardLogo,
+        CardPagesList
     },
 }
 </script>

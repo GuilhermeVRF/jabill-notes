@@ -1,0 +1,43 @@
+.pagesMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagesList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    list-style: none;
+    margin-left: 35px;
+}
+
+.pagesList a{
+    display: flex;
+    justify-content: start;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.pagesList a:hover{
+    color: gray;
+}
+
+.btn-createPage{
+    width: 50%;
+    padding: 5px;
+    border: solid 1px black;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #F4F6FF;
+    transition: all 0.3s;
+}
+
+.btn-createPage:hover{
+    color: #F4F6FF;
+    background-color: black;
+}

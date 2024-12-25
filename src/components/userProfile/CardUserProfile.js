@@ -1,6 +1,11 @@
 export async function fetchUser(router){
     try{
-        const response = await fetch(`http://localhost:5000/user/${localStorage.getItem("user_token")}`);
+        const response = await fetch(`http://localhost:5000/user`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("user_token")}`
+            }
+        });
         const responseBody = await response.json();
 
         if (response.status === 401) {
@@ -16,7 +21,12 @@ export async function fetchUser(router){
 
 export async function fetchUserProfile(){
     try{
-        const response = await fetch(`http://localhost:5000/user/profile/${localStorage.getItem("user_token")}`);
+        const response = await fetch(`http://localhost:5000/user/profile`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("user_token")}`
+            }
+        });
         const responseBody = await response.json();
 
         return responseBody.data.profile;
