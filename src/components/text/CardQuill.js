@@ -42,3 +42,19 @@ export async function fetchPage(slug){
     }
 }
 
+export async function updateContent(slug, content){
+    try{
+        const response = await fetch(`http://localhost:5000/page/${slug}`,{
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("user_token")}`
+            },
+            body: JSON.stringify({ content : content })
+        });
+
+        const responseBody = await response.json();
+        return responseBody.status == "success"
+    }catch(exception){
+        return false;
+    }
+}

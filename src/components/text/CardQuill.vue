@@ -7,7 +7,7 @@
 
 <script>
 import "./CardQuill.css";
-import {initializeQuill, fetchPage} from "./CardQuill.js";
+import {initializeQuill, fetchPage, updateContent} from "./CardQuill.js";
 
 export default {
     name: "CardQuill",
@@ -29,6 +29,10 @@ export default {
     },
     mounted() {
         this.quill = initializeQuill(this.$refs.editor);
+        this.quill.on('text-change', async () => {
+            this.content = this.quill.root.innerHTML;
+            updateContent(this.slug, this.content)
+        });
     }
 }
 </script>
