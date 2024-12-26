@@ -7,10 +7,26 @@
 
 <script>
 import "./CardQuill.css";
-import {initializeQuill} from "./CardQuill.js";
+import {initializeQuill, fetchPage} from "./CardQuill.js";
 
 export default {
     name: "CardQuill",
+    data() {
+      return {
+        slug: this.$route.params.slug,
+        content: ""
+      };
+    },
+    watch: {
+      '$route.params.slug': {
+        immediate: true,
+        handler: async function(newSlug){ 
+            this.slug = newSlug;
+            this.content = await fetchPage(this.slug);
+            this.quill.root.innerHTML = (this.content.content)
+        }
+      }
+    },
     mounted() {
         this.quill = initializeQuill(this.$refs.editor);
     }

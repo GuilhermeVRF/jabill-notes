@@ -21,6 +21,24 @@ export function initializeQuill(editorRef){
     //quill.root.addEventListener('keydown', (event) => toggleQuillMenu(event, menuIdentifier));
 }
 
-/*function toggleQuillMenu(event, menuIdentifier){
-    console.log('toggleQuillMenu', menuIdentifier);
-}*/
+export async function fetchPage(slug){
+    try{
+        const response = await fetch(`http://localhost:5000/page/${slug}`,{
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("user_token")}`
+            }
+        });
+
+        const responseBody = await response.json();
+        if(responseBody.status == "success"){
+            return responseBody.data
+        }else{
+            window.showPopup(responseBody.status, responseBody.message);
+            return null;
+        }
+    }catch(exception){
+        return "";
+    }
+}
+

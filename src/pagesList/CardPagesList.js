@@ -8,7 +8,7 @@ export async function fetchPages(){
         })
         const responseBody = await response.json();
         
-        return responseBody.status == "success" ? responseBody.data : null
+        return responseBody.status == "success" ? responseBody.data : []
     }catch(exception){
         return []
     }
@@ -25,8 +25,8 @@ export async function createPage(){
         })
         const responseBody = await response.json();
         
-        return responseBody.status == "success" ? responseBody.data : []
+        return responseBody.status == "success" ? responseBody.data : null
     }catch(exception){
-        return []
+        return null
     }    
 }
