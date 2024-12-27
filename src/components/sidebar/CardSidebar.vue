@@ -4,7 +4,7 @@
         <div class="toggleSidebar">
             <button @click="toggleSidebar" class="toggleSidebar-btn">{{ isCollapsed ? '>>>' : '<<<' }}</button> 
         </div> 
-        <CardPagesList :pages="pages" @create-page="createPage"/>
+        <CardPagesList :pages="pages" :collapsed="isCollapsed" @create-page="createPage"/>
     </div>
 </template>
 
@@ -73,9 +73,9 @@ export default{
         color: white;
     }
 
-    @media screen and (max-width: 800px){
+    @media screen and (max-width: 500px){
         .sidebar{
-            width: 100px;
+            width: 100%;
         }
 
         .sidebar .logo{
