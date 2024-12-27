@@ -7,7 +7,7 @@ export async function fetchPagesInServer(){
             }
         })
         const responseBody = await response.json();
-        console.log(responseBody.data)
+
         return responseBody.data || []
     }catch(exception){
         return [];
@@ -47,7 +47,7 @@ export async function sendTextChangeToServer(slug, content){
         });
 
         const responseBody = await response.json();
-        console.log(responseBody)
+      
         return responseBody.status == "success"
     }catch(exception){
         return false;
@@ -65,7 +65,7 @@ export async function sentTitleChangeToServer(slug, title){
         });
 
         const responseBody = await response.json();
-        console.log(responseBody)
+        
         if (responseBody.status == "success"){
             return {title: responseBody.data.title, slug: responseBody.data.slug}
         }else{

@@ -1,7 +1,7 @@
 <template>
-    <div :class="$style.pagesMenu">
+    <div :class="$style.pagesMenu" v-if="!collapsed">
         <form :class="$style.createPageForm">
-            <input type="text" class="form-control" placeholder="Criar Página" v-model="newPageTitle">
+            <input type="text" class="form_control" placeholder="Criar Página" v-model="newPageTitle">
             <input  type="button" value="+" class="btn btn-success" @click="createPage">
         </form>
         <ul :class="$style.pagesList">
@@ -26,6 +26,10 @@ export default{
     props: {
         pages: {
             type: Object,
+            required: true
+        },
+        collapsed:{
+            type: Boolean,
             required: true
         }
     },

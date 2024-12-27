@@ -20,7 +20,7 @@ export default{
     }, 
     methods: {
         updateTitle(event){
-            this.$emit("title-change", event.target.innerText)
+            this.$emit("title-change", event.target.textContent)
         }
     },
     computed: {
