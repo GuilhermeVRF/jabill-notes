@@ -33,3 +33,9 @@
     text-align: center;
     width: 100%;
 }
+
+.form_control{
+    padding: 8px;
+    border-radius: 10px;
+    border: solid 1px #ccc;
+}
