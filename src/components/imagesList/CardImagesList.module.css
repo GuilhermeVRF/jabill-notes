@@ -1,4 +1,4 @@
-#changeCape{
+.changeCape{
     position: absolute;
     text-align: center;   
     right: 10px; 
@@ -24,7 +24,7 @@
     z-index: 10; 
 }
 
-#imagesList{
+.imagesList{
     display: grid;
     margin-top: 80px;
     grid-template-columns: repeat(2, 1fr);
@@ -38,7 +38,7 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
 }
 
-#imagesList img:hover{
+.imagesList img:hover{
     cursor: pointer;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
 }
@@ -49,18 +49,18 @@
 }
 
 @media screen and (max-width: 800px){
-    #imagesList{
+    .imagesList{
         grid-template-columns: repeat(1, 1fr);
         height: 150px;
         margin-top: 60px;
     }
 
-    #imagesList img{
+    .imagesList img{
         width: 100px;
         height: 75px;
     }
  
-    #changeCape{
+    .changeCape{
         width: 80px;
         height: 40px;
         font-size: 10px;

@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.imageOptions">
-        <button id="changeCape" @click="toggleImages">Alterar</button>
-        <div id="imagesList" v-if="showImages">
+        <button :class="$style.changeCape" @click="toggleImages">Alterar</button>
+        <div :class="$style.imagesList" v-if="showImages">
             <img
                 v-for="image in images"
                 :key="image.id"
