@@ -14,7 +14,7 @@
                         :name="field.name" 
                         :placeholder="field.placeholder" 
                         :required="field.required"
-                        :class="$style.form_control"
+                        class="form_control"
                     >
                     <input
                         v-else
@@ -23,7 +23,7 @@
                         :name="field.name"
                         :placeholder="field.placeholder"
                         :required="field.required"
-                        :class="$style.form_control"
+                        class="form_control"
                         @change="handleFileEvent(field.id, $event)"
                     >
                 </div>

@@ -29,12 +29,6 @@
     margin-top: 10px;
 }
 
-.form_control{
-    padding: 8px;
-    border-radius: 10px;
-    border: solid 1px #ccc;
-}
-
 .form_action{
     display: flex;
     justify-content: space-between;
