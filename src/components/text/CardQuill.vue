@@ -7,31 +7,27 @@
 
 <script>
 import "./CardQuill.css";
-import {initializeQuill, fetchPage, updateContent} from "./CardQuill.js";
+import {initializeQuill} from "./CardQuill.js";
 
 export default {
     name: "CardQuill",
-    data() {
-      return {
-        slug: this.$route.params.slug,
-        content: ""
-      };
-    },
-    watch: {
-      '$route.params.slug': {
-        immediate: true,
-        handler: async function(newSlug){ 
-            this.slug = newSlug;
-            this.content = await fetchPage(this.slug);
-            this.quill.root.innerHTML = (this.content.content)
-        }
+    emits: ['text-change'],
+    props: {
+      content:{
+        type: String,
+        required: true
+      },
+      slug: {
+        type: String,
+        required: true
       }
     },
     mounted() {
-        this.quill = initializeQuill(this.$refs.editor);
+        this.quill = initializeQuill(this.$refs.editor, this.content);
+
         this.quill.on('text-change', async () => {
-            this.content = this.quill.root.innerHTML;
-            updateContent(this.slug, this.content)
+            console.log("Mudança no texto!")
+            this.$emit("text-change", this.quill.root.innerHTML)
         });
     }
 }
