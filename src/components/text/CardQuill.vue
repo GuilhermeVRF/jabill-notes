@@ -1,12 +1,12 @@
 <template>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <div class="quill-container">
+    <div :class="$style.quill_container">
         <div ref="editor"></div>
     </div>
 </template>
 
 <script>
-import "./CardQuill.css";
+import styles from "./CardQuill.module.css";
 import {initializeQuill} from "./CardQuill.js";
 
 export default {
@@ -29,6 +29,11 @@ export default {
             console.log("Mudança no texto!")
             this.$emit("text-change", this.quill.root.innerHTML)
         });
+    },
+    computed: {
+      $style(){
+        return styles;
+      }
     }
 }
 </script>

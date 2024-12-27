@@ -1,5 +1,5 @@
 <template>
-    <div class="imageOptions">
+    <div :class="$style.imageOptions">
         <button id="changeCape" @click="toggleImages">Alterar</button>
         <div id="imagesList" v-if="showImages">
             <img
@@ -12,12 +12,11 @@
                 style="margin: 5px;"
             />
         </div>
-        
     </div>
 </template>
 
 <script>
-import "./CardImagesList.css";
+import styles from "./CardImagesList.module.css";
 
 export default {
     name: 'CardImagesList',
@@ -58,5 +57,10 @@ export default {
             this.showImages = !this.showImages; // Alterna a flag
         },
     },
+    computed: {
+        $style(){
+            return styles;
+        }
+    }
 };
 </script>

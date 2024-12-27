@@ -1,5 +1,5 @@
 <template>
-    <div class="userProfile">
+    <div :class="$style.userProfile">
         <template v-if="isLoading">
             <CardLoading width="80" height="50"/>
         </template>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import "./CardUserProfile.css";
+import styles from "./CardUserProfile.module.css";
 import { fetchUser , fetchUserProfile} from "./CardUserProfile.js";
 import CardLoading from "../loading/CardLoading.vue";
 
@@ -39,6 +39,11 @@ export default {
         } finally {
             this.isLoading = false;
         }  
+    },
+    computed: {
+        $style(){
+            return styles;
+        }
     }
 }
 </script>

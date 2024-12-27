@@ -10,7 +10,7 @@
 
 <script>
 import CardLogo from '../logo/CardLogo.vue';
-import CardPagesList from '@/pagesList/CardPagesList.vue';
+import CardPagesList from '@/components/pagesList/CardPagesList.vue';
 export default{
     name: "CardSidebar",
     emits: ['create-page'],

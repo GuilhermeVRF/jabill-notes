@@ -1,11 +1,11 @@
 <template>
-    <header class="logged-header">
+    <header :class="$style.logged_header">
         <CardUserProfile />
     </header>
 </template>
 
 <script>
-import "./CardLoggedHeader.css";
+import styles from "./CardLoggedHeader.module.css";
 import CardUserProfile from '../userProfile/CardUserProfile.vue';
 
 export default {
@@ -13,5 +13,10 @@ export default {
     components: {
         CardUserProfile
     },
+    computed: {
+        $style(){
+            return styles;
+        }
+    }
 }
 </script>

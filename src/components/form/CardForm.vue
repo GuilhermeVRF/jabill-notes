@@ -1,10 +1,10 @@
 <template>
-    <div class="form-container">
-        <img :src="imgSrc" alt="login" class="form-image">
-        <div  class="form-content">
-            <h1 class="login-title">{{ title }}</h1>
-            <form class="form" method="post" @submit.prevent="submitForm">
-                <div v-for="(field, index) in fields" :key=index class="form-group">
+    <div :class="$style.form_container">
+        <img :src="imgSrc" alt="login" :class="$style.form_image">
+        <div  :class="$style.form_content">
+            <h1 :class="$style.login_title">{{ title }}</h1>
+            <form :class="$style.form" method="post" @submit.prevent="submitForm">
+                <div v-for="(field, index) in fields" :key=index :class="$style.form_group">
                     <label :for="field.id">{{ field.label }}</label>
                     <input
                         v-if="field.type != 'file'"
@@ -14,7 +14,7 @@
                         :name="field.name" 
                         :placeholder="field.placeholder" 
                         :required="field.required"
-                        class="form-control"
+                        :class="$style.form_control"
                     >
                     <input
                         v-else
@@ -23,12 +23,12 @@
                         :name="field.name"
                         :placeholder="field.placeholder"
                         :required="field.required"
-                        class="form-control"
+                        :class="$style.form_control"
                         @change="handleFileEvent(field.id, $event)"
                     >
                 </div>
 
-                <div class="form-action">
+                <div :class="$style.form_action">
                     <button type="submit" class="btn btn-success">Enviar</button>
                     <button type="reset" class="btn btn-danger">Resetar</button>
                 </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import "./CardForm.css";
+import styles from "./CardForm.module.css";
 import { reactive } from "vue";
 
 export default {
@@ -87,6 +87,11 @@ export default {
         },
         submitForm() {
             this.$emit('submit-form', {formData : this.formData })
+        }
+    },
+    computed: {
+        $style() {
+            return styles;
         }
     }
 }

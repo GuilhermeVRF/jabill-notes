@@ -1,12 +1,12 @@
 <template>
-    <div class="logo">
-           <img src="@/assets/logo.png" alt="logo" :class="['logo', {collapsed: collapsed}]">
+    <div :class="$style.logo">
+           <img src="@/assets/logo.png" alt="logo" :class="[$style.logo, { [$style.collapsed]: collapsed }]">
            <h2 v-if="!collapsed">Jabill Notes</h2>
         </div>
 </template>
 
 <script>
-import "./CardLogo.css";
+import styles from "./CardLogo.module.css";
 
 export default {
     name: "CardLogo",
@@ -16,5 +16,10 @@ export default {
             default: false,
         },
     },
+    computed: {
+        $style(){
+            return styles;
+        }
+    }
 }
 </script>

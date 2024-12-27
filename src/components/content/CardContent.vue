@@ -1,9 +1,9 @@
 <template>
-    <div class="content">
+    <div :class="$style.content">
         <CardLoggedHeader />
-        <div class="imageCape">
+        <div :class="$style.imageCape">
             <CardImagesList />
-            <img src="../../assets/yellow.png" id="cape">
+            <img src="@/assets/yellow.png" :class="$style.cape">
             <CardPageTitle :title="title" :emoji="emoji" @title-change="titleChange"/>
         </div>
         <CardQuill :content="content" :slug="slug" @text-change="textChange"/>
@@ -15,7 +15,7 @@ import CardLoggedHeader from '../loggedHeader/CardLoggedHeader.vue';
 import CardImagesList from '../imagesList/CardImagesList.vue';
 import CardPageTitle from '../pageTitle/CardPageTitle.vue';
 import CardQuill from '../text/CardQuill.vue';
-import './CardContent.css';
+import styles from './CardContent.module.css';
 
 export default {
   name: "CardContent",
@@ -55,6 +55,11 @@ export default {
     titleChange(title){
       this.$emit("title-change", title)
     }   
+  },
+  computed: {
+    $style() {
+      return styles;
+    }
   }
 }
 </script>

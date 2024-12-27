@@ -1,12 +1,12 @@
 <template>
-    <div class="title">
-        <span class="emoji">{{ String.fromCodePoint(0x1F4C3) }}</span>
+    <div :class="$style.title">
+        <span :class="$style.emoji">{{ String.fromCodePoint(0x1F4C3) }}</span>
         <h1 contenteditable="true" @input="updateTitle"> {{ title }}</h1>
     </div>
 </template>
 
 <script>
-import "./CardPageTitle.css";
+import styles from "./CardPageTitle.module.css";
 export default{
     name: "CardPageTitle",
     props: {
@@ -21,6 +21,11 @@ export default{
     methods: {
         updateTitle(event){
             this.$emit("title-change", event.target.innerText)
+        }
+    },
+    computed: {
+        $style(){
+            return styles;
         }
     }
 }

@@ -1,10 +1,10 @@
 <template>
-    <div class="pagesMenu">
-        <form class="createPageForm">
+    <div :class="$style.pagesMenu">
+        <form :class="$style.createPageForm">
             <input type="text" class="form-control" placeholder="Criar Página" v-model="newPageTitle">
-            <input  type="button" value="+" class="btn" @click="createPage">
+            <input  type="button" value="+" class="btn btn-success" @click="createPage">
         </form>
-        <ul class="pagesList">
+        <ul :class="$style.pagesList">
             <li v-for="([slug, page]) of Object.entries(pages)" :key="page.id">
                 <RouterLink :to="'/content/' + slug">{{ String.fromCodePoint(0x1F4C3) }} {{ page.title }}</RouterLink>
             </li>
@@ -14,7 +14,7 @@
 
 <script>
 import { createPageInServer } from "./CardPagesList.js";
-import "./CardPagesList.css"
+import style from "./CardPagesList.module.css"
 export default{
     name: "CardPagesList",
     emits: ['create-page'],
@@ -34,6 +34,11 @@ export default{
             const page = await createPageInServer(this.newPageTitle);
 
             if(page) this.$emit("create-page", page)
+        }
+    },
+    computed: {
+        $style(){
+            return style;
         }
     }
 }
