@@ -9,6 +9,10 @@ function isAuthenticated() {
 
 const routes = [
     {
+        path: '/',
+        redirect: '/login'
+    },
+    {
         path: '/login',
         name: 'login',
         component: ViewLogin
