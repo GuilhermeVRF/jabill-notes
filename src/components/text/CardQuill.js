@@ -10,13 +10,13 @@ export function initializeQuill(editorRef, content){
                 [{ list: 'ordered' }, { list: 'bullet' },
                     { indent: '-1' }, { indent: '+1' }
                 ],
-                ['link', 'image', 'video'],
+                //['link', 'image', 'video'],
                 ['clean']
             ]   
         },
         theme: 'snow',
     });
 
-    quill.root.innerHTML = content
+    quill.clipboard.dangerouslyPasteHTML(content);
     return quill;
 }

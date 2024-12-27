@@ -26,7 +26,6 @@ export default {
         this.quill = initializeQuill(this.$refs.editor, this.content);
 
         this.quill.on('text-change', async () => {
-            console.log("Mudança no texto!")
             this.$emit("text-change", this.quill.root.innerHTML)
         });
     },
