@@ -4,7 +4,7 @@
         <div class="toggleSidebar">
             <button @click="toggleSidebar" class="toggleSidebar-btn">{{ isCollapsed ? '>>>' : '<<<' }}</button> 
         </div> 
-        <CardPagesList />
+        <CardPagesList :pages="pages" @create-page="createPage"/>
     </div>
 </template>
 
@@ -13,6 +13,13 @@ import CardLogo from '../logo/CardLogo.vue';
 import CardPagesList from '@/pagesList/CardPagesList.vue';
 export default{
     name: "CardSidebar",
+    emits: ['create-page'],
+    props: {
+        pages: {
+            type: Object,
+            required: true
+        }
+    },
     data (){
         return {
             isCollapsed: false
@@ -21,6 +28,9 @@ export default{
     methods: {
         toggleSidebar(){
             this.isCollapsed = !this.isCollapsed;
+        },
+        createPage(page){
+            this.$emit("create-page", page)
         }
     },
     components: {

@@ -27,17 +27,6 @@
     color: gray;
 }
 
-.btn-createPage{
-    width: 50%;
-    padding: 5px;
-    border: solid 1px black;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: #F4F6FF;
-    transition: all 0.3s;
-}
-
-.btn-createPage:hover{
-    color: #F4F6FF;
-    background-color: black;
+.createPageForm{
+    display: flex;
 }

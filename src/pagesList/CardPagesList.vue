@@ -1,34 +1,39 @@
 <template>
     <div class="pagesMenu">
-        <input id="createPage" type="button" value="Criar página" class="btn-createPage" @click="createPage">
+        <form class="createPageForm">
+            <input type="text" class="form-control" placeholder="Criar Página" v-model="newPageTitle">
+            <input  type="button" value="+" class="btn" @click="createPage">
+        </form>
         <ul class="pagesList">
-            <li v-for="page in pages" :key="page.id">
-                <RouterLink :to="'/content/' + page.slug">{{ String.fromCodePoint(0x1F4C3) }} {{ page.title }}</RouterLink>
+            <li v-for="([slug, page]) of Object.entries(pages)" :key="page.id">
+                <RouterLink :to="'/content/' + slug">{{ String.fromCodePoint(0x1F4C3) }} {{ page.title }}</RouterLink>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-import { fetchPages, createPage } from "./CardPagesList.js";
+import { createPageInServer } from "./CardPagesList.js";
 import "./CardPagesList.css"
 export default{
     name: "CardPagesList",
-    components: {
-
-    },
-    data(){
+    emits: ['create-page'],
+    data() {
         return {
-            pages: []
-        }
+            newPageTitle: "",
+        };
     },
-    async mounted() {
-        this.pages = await fetchPages()
+    props: {
+        pages: {
+            type: Object,
+            required: true
+        }
     },
     methods: {
         async createPage(){
-            const page = await createPage();
-            if(page) this.pages.push(page)
+            const page = await createPageInServer(this.newPageTitle);
+
+            if(page) this.$emit("create-page", page)
         }
     }
 }
