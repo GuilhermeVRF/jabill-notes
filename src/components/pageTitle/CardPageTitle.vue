@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.title">
         <span :class="$style.emoji">{{ String.fromCodePoint(0x1F4C3) }}</span>
-        <h1 contenteditable="true" @input="updateTitle"> {{ title }}</h1>
+        <input type="text" @input="updateTitle" :value="title" :class="$style.input_title">
     </div>
 </template>
 
@@ -20,7 +20,7 @@ export default{
     }, 
     methods: {
         updateTitle(event){
-            this.$emit("title-change", event.target.textContent)
+            this.$emit("title-change", event.target.value)
         }
     },
     computed: {

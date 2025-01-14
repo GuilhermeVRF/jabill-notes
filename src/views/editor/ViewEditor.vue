@@ -43,8 +43,10 @@ export default {
     '$route.params.slug': {
       immediate: true,
       handler: async function(newSlug){ 
+          console.log(newSlug);
           this.slug = newSlug;
           this.page = await fetchPageInServer(this.slug);
+          console.log(this.page);
       }
     }
   },

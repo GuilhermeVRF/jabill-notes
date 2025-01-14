@@ -29,6 +29,13 @@ export default {
             this.$emit("text-change", this.quill.root.innerHTML)
         });
     },
+    watch: {
+        content(newContent) {
+            if (newContent !== this.quill.root.innerHTML) {
+                this.quill.root.innerHTML = newContent;
+            }
+        }
+    },
     computed: {
       $style(){
         return styles;

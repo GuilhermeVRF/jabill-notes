@@ -13,7 +13,7 @@ export async function login(form, router){
 
             window.showPopup(responseBody.status, responseBody.message);
             setTimeout(() => {}, 3000);
-            router.push('/content')
+            router.push('/content/nova-pagina')
         }else{
             window.showPopup(responseBody.status, responseBody.message);   
         }

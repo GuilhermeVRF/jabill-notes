@@ -13,3 +13,10 @@
     align-items: center;
     font-size: 24px;
 }
+
+.input_title{
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 24px;
+}
