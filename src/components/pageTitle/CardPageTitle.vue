@@ -20,7 +20,12 @@ export default{
     }, 
     methods: {
         updateTitle(event){
-            this.$emit("title-change", event.target.value)
+            const newValue = event.target.value;
+            if(newValue.trim() !== ""){
+                this.$emit("title-change", event.target.value)
+            }else{ 
+                event.target.value = this.title;
+            }
         }
     },
     computed: {
