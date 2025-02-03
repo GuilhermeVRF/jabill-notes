@@ -10,12 +10,13 @@
         :slug="slug"
         @text-change="textChange"
         @title-change="titleChange"
+        @emoji-change="emojiChange"
       />
     </div>
   </template>
   
 <script>
-import { fetchPagesInServer, fetchPageInServer, sendTextChangeToServer, sentTitleChangeToServer } from "./ViewEditor.js"
+import { fetchPagesInServer, fetchPageInServer, sendTextChangeToServer, sentTitleChangeToServer, sentEmojiChangeToServer } from "./ViewEditor.js"
 import CardContent from '@/components/content/CardContent.vue';
 import CardSidebar from '@/components/sidebar/CardSidebar.vue';
 
@@ -43,10 +44,8 @@ export default {
     '$route.params.slug': {
       immediate: true,
       handler: async function(newSlug){ 
-          console.log(newSlug);
           this.slug = newSlug;
           this.page = await fetchPageInServer(this.slug);
-          console.log(this.page);
       }
     }
   },
@@ -56,6 +55,11 @@ export default {
     },
     textChange(content){
       sendTextChangeToServer(this.slug, content)
+    },
+    emojiChange(emoji){
+      this.pages[this.slug].emoji = emoji;
+      this.page.emoji = emoji;
+      sentEmojiChangeToServer(this.slug, emoji)
     },
     async titleChange(title){
       const newSlugAndTitle = await sentTitleChangeToServer(this.slug, title);

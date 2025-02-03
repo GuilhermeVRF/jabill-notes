@@ -1,0 +1,27 @@
+.emojisContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; 
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0px 0px 15px black;
+    padding: 10px;
+    border-radius: 10px;
+    top: 30px;
+    left: 0px;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.emoji{
+    border: solid 1px lightgray;
+    padding: 3px 5px;
+    display: flex;
+    align-items: center;
+}
+
+.emoji:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}

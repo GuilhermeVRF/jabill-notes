@@ -1,21 +1,31 @@
 <template>
     <div :class="$style.title">
-        <span :class="$style.emoji">{{ String.fromCodePoint(0x1F4C3) }}</span>
+        <span :class="$style.emoji" @click="toggleEmojisList">{{ this.emoji }}
+            <CardEmojisList :isVisible="showEmojisList" @emoji-change="handleEmojiSelected"/>
+        </span>
         <input type="text" @input="updateTitle" :value="title" :class="$style.input_title">
     </div>
 </template>
 
 <script>
+import CardEmojisList from "../emojisList/CardEmojisList.vue";
 import styles from "./CardPageTitle.module.css";
 export default{
     name: "CardPageTitle",
+    components: {CardEmojisList},
+    data(){
+        return {
+            showEmojisList: false,
+            
+        };
+    },
     props: {
         title: {
             type: String,
             required: true
         },
-        emoji: {
-            type: String,
+        emoji:{
+            type: String
         }
     }, 
     methods: {
@@ -26,6 +36,13 @@ export default{
             }else{ 
                 event.target.value = this.title;
             }
+        },
+        toggleEmojisList() {
+            this.showEmojisList = !this.showEmojisList;
+        },
+        handleEmojiSelected(emoji){
+            //this.emoji = emoji
+            this.$emit("emoji-change", emoji)
         }
     },
     computed: {

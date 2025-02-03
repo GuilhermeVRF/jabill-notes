@@ -17,6 +17,10 @@
 
 .pageLinkTitle{
     display: flex;
+    white-space: nowrap;     
+    overflow: hidden;         
+    text-overflow:ellipsis;  
+    width: 90%;
 }
 
 .pagesList a{
@@ -24,11 +28,7 @@
     justify-content: start;
     text-decoration: none;
     color: black;
-    font-size: 18px;
-    white-space: nowrap;     
-    overflow: hidden;         
-    text-overflow:ellipsis;  
-    width: 75%;
+    font-size: 14px;
 }
 
 .pagesList a:hover{

@@ -76,3 +76,23 @@ export async function sentTitleChangeToServer(slug, title){
         return null;
     }
 }
+
+export async function sentEmojiChangeToServer(slug, emoji){
+    try{
+        const response = await fetch(`http://localhost:5000/page/emoji/${slug}`,{
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("user_token")}`
+            },
+            body: JSON.stringify({ emoji : emoji })
+        });
+
+        const responseBody = await response.json();
+
+        if (responseBody.status){
+            window.showPopup(responseBody.status, responseBody.message);
+        }
+    }catch(exception){
+        return null;
+    }
+}

@@ -3,7 +3,7 @@
         <CardLoggedHeader />
         <div :class="$style.imageCape">
             <img src="@/assets/yellow.png" :class="$style.cape">
-            <CardPageTitle :title="title" :emoji="emoji" @title-change="titleChange"/>
+            <CardPageTitle :title="title" :emoji="emoji" @title-change="titleChange" @emoji-change="emojiChange"/>
         </div>
         <CardQuill :content="content" :slug="slug" @text-change="textChange"/>
     </div>
@@ -51,6 +51,9 @@ export default {
     },
     titleChange(title){
       this.$emit("title-change", title)
+    },
+    emojiChange(emoji){
+      this.$emit("emoji-change", emoji)  
     }   
   },
   computed: {
