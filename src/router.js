@@ -41,7 +41,6 @@ router.beforeEach((to, from, next) => {
         next({name : 'login'});
     }else{
         if (to.path !== "/login" && to.path !== "/login") localStorage.setItem("last_visited_page", to.fullPath);
-        console.log(to.path);
         next();
     }
 })

@@ -20,6 +20,7 @@
 
 <script>
 import { createPageInServer, deletePage } from "./CardPagesList.js";
+
 import style from "./CardPagesList.module.css"
 export default{
     name: "CardPagesList",

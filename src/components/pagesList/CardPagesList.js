@@ -9,6 +9,8 @@ export async function createPageInServer(title){
         })
         const responseBody = await response.json();
         
+        if(responseBody.status) window.showPopup(responseBody.status, responseBody.message);
+
         return responseBody.status == "success" ? responseBody.data : null
     }catch(exception){
         return null
