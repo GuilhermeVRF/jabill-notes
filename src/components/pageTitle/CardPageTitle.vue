@@ -31,17 +31,17 @@ export default{
     methods: {
         updateTitle(event){
             const newValue = event.target.value;
-            if(newValue.trim() !== ""){
-                this.$emit("title-change", event.target.value)
-            }else{ 
-                event.target.value = this.title;
+    
+            event.target.value = newValue;
+            
+            if (newValue.trim() !== "") {
+                this.$emit("title-change", newValue);
             }
         },
         toggleEmojisList() {
             this.showEmojisList = !this.showEmojisList;
         },
         handleEmojiSelected(emoji){
-            //this.emoji = emoji
             this.$emit("emoji-change", emoji)
         }
     },

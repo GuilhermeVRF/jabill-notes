@@ -8,7 +8,6 @@
         <option @click="formatText('heading', 'h2')">Título 2</option>
         <option @click="formatText('heading', 'h3')">Título 3</option>
       </select>
-
       <select id="font_size">
         <option disabled selected>Tamanho da Fonte</option>
         <option @click="formatText('font-size', '16px')">Normal</option>
@@ -22,20 +21,16 @@
       <button @click="formatText('strike')">S</button>
       <button @click="formatText('list', 'ordered')">1.</button>
       <button @click="formatText('list', 'bullet')">•</button>
-      <!--<button @click="formatText('link')">🔗</button>
-      <button @click="formatText('align', 'left')">🡄</button>
-      <button @click="formatText('align', 'center')">⏺</button>
-      <button @click="formatText('align', 'right')">🡆</button>-->
+      <button @click="formatText('link')">🔗</button>
+      <button @click="unformatText">🧹</button>
     </div>
-    <div ref="editor" contenteditable="true" :class="$style.editor" @mouseup="saveSelection" @keyup="saveSelection">
-      ></div>
+    <div ref="editor" contenteditable="true" :class="$style.editor" @mouseup="saveSelection" @keyup="saveSelection">></div>
   </div>
 </template>
 
 <script>
 import styles from "./CardQuill.module.css";
 import { createPageInServer } from "../pagesList/CardPagesList";
-import deleteIcon from "@/assets/trash.png";
 
 export default {
   name: "CardEditor",
@@ -61,19 +56,6 @@ export default {
     this.$refs.editor.addEventListener('input', () => {
       this.$emit("text-change", this.$refs.editor.innerHTML);
     });
-
-    document.querySelectorAll('.deletePageLink').forEach(btn => {
-      btn.addEventListener('click', (event) => {
-        const linkContainer = event.target.parentElement.parentElement || null;
-        if(linkContainer){
-          event.target.parentElement.parentElement.remove();
-
-          // Emite o evento para atualizar o editor
-          this.$emit("text-change", this.$refs.editor.innerHTML);
-        }
-      });
-    });
-
   },
   watch: {
     content(newContent) {
@@ -95,7 +77,7 @@ export default {
 
       const selectedText = this.selection.toString();
       if (selectedText.length === 0) return;
-
+      
       let span = null;
       switch (styleType) {
         case 'bold':
@@ -117,19 +99,39 @@ export default {
           this.createHeading(value, selectedText);
           break;
         case 'font-size':
-          this.applyStyle('fontSize', value);
+          span = this.applyStyle('fontSize', value);
           break;
         case 'link':
           this.createLink(selectedText);
           break;
         default:
-          break;
+        break;
       }
 
       // Se nenhuma formatação específica for aplicada, cria um span com o texto selecionado
       if (span) this.createSpan(span, selectedText);
     },
+    unformatText(){
+      if(!this.selection) return;
 
+      const selectedText = this.selection.toString();
+      if(selectedText.length === 0) return;
+
+      const textNode = document.createTextNode(selectedText);
+
+      this.selection.deleteContents();
+      this.selection.insertNode(textNode);
+
+      const newRange = document.createRange();
+      newRange.selectNodeContents(textNode);
+      newRange.collapse(false);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(newRange);
+
+      this.$emit("text-change", this.$refs.editor.innerHTML);
+    },
     // Função auxiliar para aplicar estilos diretamente
     applyStyle(styleProperty, styleValue) {
       const span = document.createElement("span");
@@ -161,27 +163,13 @@ export default {
       linkContainer.classList.add(this.$style.link_container);
 
       const link = document.createElement('a');
-      const response = await createPageInServer(selectedText);
+      const response = await createPageInServer(selectedText, this.slug);
 
       link.href = `http://localhost:8080/content/${response.slug}`;
       link.textContent = `🔗 ${selectedText}`;
-
-      const deleteLinkBtn = document.createElement('button');
-      deleteLinkBtn.classList.add('deletePageLink');
-      deleteLinkBtn.addEventListener('click', () => {
-        linkContainer.remove();
-        this.$emit("text-change", this.$refs.editor.innerHTML);
-      })
-      const deleteLinkBtnIcon = document.createElement('img');
-      
-      deleteLinkBtnIcon.src = deleteIcon;
-
       linkContainer.appendChild(link);
-      deleteLinkBtn.appendChild(deleteLinkBtnIcon);
-      linkContainer.appendChild(deleteLinkBtn);
 
       this.insertNodeAtSelection(linkContainer);
-      this.$refs.editor.appendChild(document.createElement('br'));
     },
 
     // Função para criar um <span> com o texto selecionado
@@ -213,6 +201,7 @@ export default {
 
       // Atualiza o editor emitindo a mudança
       this.$emit("text-change", this.$refs.editor.innerHTML);
+      this.$emit("childPage-created");
     }
 
   },

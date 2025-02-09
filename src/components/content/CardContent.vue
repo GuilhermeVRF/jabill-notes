@@ -5,7 +5,7 @@
             <img src="@/assets/yellow.png" :class="$style.cape">
             <CardPageTitle :title="title" :emoji="emoji" @title-change="titleChange" @emoji-change="emojiChange"/>
         </div>
-        <CardQuill :content="content" :slug="slug" @text-change="textChange"/>
+        <CardQuill :content="content" :slug="slug" @text-change="textChange" @childPage-created="childPageCreated"/>
     </div>
 </template>
 
@@ -54,6 +54,9 @@ export default {
     },
     emojiChange(emoji){
       this.$emit("emoji-change", emoji)  
+    },
+    childPageCreated(){
+      this.$emit("childPage-created");
     }   
   },
   computed: {

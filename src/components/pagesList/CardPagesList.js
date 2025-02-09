@@ -1,11 +1,14 @@
-export async function createPageInServer(title){
+export async function createPageInServer(title, parentId){
     try{
         const response = await fetch(`http://localhost:5000/page`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("user_token")}`
             },
-            body: JSON.stringify({title: title})
+            body: JSON.stringify({
+                title: title,
+                parent_id: parentId
+            })
         })
         const responseBody = await response.json();
         

@@ -1,10 +1,10 @@
 <template>
     <div :class="['sidebar', {collapsed: isCollapsed}]">
-        <CardLogo :collapsed="isCollapsed"/>
+        <CardLogo :isCollapsed="isCollapsed"/>
         <div class="toggleSidebar">
             <button @click="toggleSidebar" class="toggleSidebar-btn">{{ isCollapsed ? '>>>' : '<<<' }}</button> 
         </div> 
-        <CardPagesList :pages="pages" :collapsed="isCollapsed" @create-page="createPage"/>
+        <CardPagesList :pages="pages" :collapsed="isCollapsed" @create-page="createPage" @deletePage-inList="deletePageInList"/>
     </div>
 </template>
 
@@ -31,6 +31,9 @@ export default{
         },
         createPage(page){
             this.$emit("create-page", page)
+        },
+        deletePageInList(slug){
+            this.$emit("deletePage-inList", slug);
         }
     },
     components: {
@@ -42,9 +45,8 @@ export default{
 
 <style>
     .sidebar{
-        height: 100vh;
         background-color: lightgray;
-        width: 300px;
+        width: 350px;
         border-right: solid 1px rgba(0, 0, 0, 0.5);
         flex-shrink: 0;
         transition: 0.3s;

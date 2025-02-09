@@ -1,16 +1,16 @@
 <template>
     <div :class="$style.pagesMenu" v-if="!collapsed">
         <form :class="$style.createPageForm">
-            <input type="text" class="form_control" placeholder="Criar Página" v-model="newPageTitle">
-            <input  type="button" value="+" class="btn btn-success" @click="createPage">
+            <input type="text" :class="$style.createPageInput" placeholder="Criar Página" v-model="newPageTitle">
+            <input type="button" value="+" :class="$style.createPageBtn" @click="createPage">
         </form>
         <ul :class="$style.pagesList">
-            <li v-for="([slug, page]) of Object.entries(pages)" :key="page.id" :class="$style.pageLink">
+            <li v-for="page in pages" :key="page.id" :class="$style.pageLink" :style="{ marginLeft: page.depth * 10 + 'px' }">
                 <div :class="$style.pageLinkTitle">
-                    <span>{{ page.emoji }}</span>
-                    <RouterLink :to="'/content/' + slug"> {{ page.title }}</RouterLink>
+                    <span>{{ page.depth > 0 ? '└─' : '' }} {{ page.emoji }}</span>
+                    <RouterLink :to="'/content/' + page.slug"> {{ page.title }}</RouterLink>
                 </div>
-                <button :class="$style.deletePage" @click=deletePage(slug)>
+                <button :class="$style.deletePage" @click=deletePage(page.slug)>
                     <img src="@/assets/trash.png" alt="X">
                 </button>
             </li>
@@ -43,18 +43,20 @@ export default{
     methods: {
         async createPage(){
             if(this.newPageTitle == "") return;
-            const page = await createPageInServer(this.newPageTitle);
+            const page = await createPageInServer(this.newPageTitle, null);
 
+            this.newPageTitle = "";
             if(page) this.$emit("create-page", page)
         },
         deletePage(slug) {
-            delete this.pages[slug];
-            deletePage(slug, this.$route.params.slug)
+            this.$emit("deletePage-inList", slug);
+            
+           deletePage(slug, this.$route.params.slug)
 
             if(slug == this.$route.params.slug){
-                const slugs = Object.keys(this.pages);
-                const lastSlug = slugs.length > 0 ? slugs[slugs.length - 1] : 'empty';
+                const lastSlug = this.pages.length > 0 ? this.pages[this.pages.length - 1].slug : 'empty';
                 this.$router.replace(`/content/${lastSlug}`);
+                console.log('aqui')
             }
         }
     },
