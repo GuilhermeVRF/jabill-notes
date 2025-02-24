@@ -4,7 +4,6 @@
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background: #f9f9f9;
     height: 100%;
 }
 
@@ -36,7 +35,8 @@
     padding: 20px;
     background: white;
     outline: none;
-    overflow: hidden;
+    overflow: scroll;
+    max-height: 500px;
 }
 
 .link_container{
