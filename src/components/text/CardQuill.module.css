@@ -35,7 +35,8 @@
     padding: 20px;
     background: white;
     outline: none;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     max-height: 500px;
 }
 
