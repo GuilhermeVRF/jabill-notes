@@ -120,12 +120,12 @@ export default {
 
       const selectedText = this.selection.toString();
       if(selectedText.length === 0) return;
-
+      
       const textNode = document.createTextNode(selectedText);
 
       this.selection.deleteContents();
       this.selection.insertNode(textNode);
-
+      
       const newRange = document.createRange();
       newRange.selectNodeContents(textNode);
       newRange.collapse(false);
@@ -139,9 +139,38 @@ export default {
     // Função auxiliar para aplicar estilos diretamente
     applyStyle(styleProperty, styleValue) {
       const span = document.createElement("span");
+
+      // Extrai o conteúdo selecionado
+      const selectedNode = this.selection.extractContents();
+
+      // Verifica se o conteúdo selecionado já está dentro de um <span>
+      const existingSpan = selectedNode.querySelector("span");
+
+      if (existingSpan) {
+        // Copia os estilos do existingSpan para o novo span
+        span.setAttribute("style", existingSpan.getAttribute("style") || "");
+
+        // Move o conteúdo do existingSpan para o novo span
+        while (existingSpan.firstChild) {
+          span.appendChild(existingSpan.firstChild);
+        }
+
+        // Substitui o existingSpan pelo novo span
+        existingSpan.replaceWith(span);
+      } else {
+        // Se não houver um existingSpan, apenas adiciona o texto ao novo span
+        span.textContent = selectedNode.textContent;
+      }
+
+      // Aplica o estilo ao novo span
       span.style[styleProperty] = styleValue;
-      console.log(span.style[styleProperty])
+
+      // Insere o novo span no editor
       this.insertNodeAtSelection(span);
+
+      // Emite a mudança para atualizar o conteúdo do editor
+      this.$emit("text-change", this.$refs.editor.innerHTML);
+
       return span;
     },
 
