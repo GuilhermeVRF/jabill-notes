@@ -14,6 +14,10 @@
         <option @click="formatText('font-size', '14px')">14px</option>
         <option @click="formatText('font-size', '16px')">16px</option>
         <option @click="formatText('font-size', '18px')">18px</option>
+        <option @click="formatText('font-size', '20px')">20px</option>
+        <option @click="formatText('font-size', '24px')">24px</option>
+        <option @click="formatText('font-size', '32px')">32px</option>
+        <option @click="formatText('font-size', '64px')">64px</option>
       </select>
       <button @click="formatText('bold')"><b>B</b></button>
       <button @click="formatText('italic')"><i>I</i></button>
@@ -160,6 +164,7 @@ export default {
     // Função para criar links
     async createLink(selectedText) {
       const linkContainer = document.createElement('div');
+      linkContainer.contentEditable = false;
       linkContainer.classList.add(this.$style.link_container);
 
       const link = document.createElement('a');

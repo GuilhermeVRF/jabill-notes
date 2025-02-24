@@ -32,10 +32,11 @@
 }
 
 .editor {
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     background: white;
     outline: none;
+    overflow: hidden;
 }
 
 .link_container{
